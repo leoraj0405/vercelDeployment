@@ -9,6 +9,8 @@ require('dotenv').config(); // Load .env variables
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(cors({
     origin: process.env.CLIENT_URL
 }))
@@ -67,5 +69,5 @@ app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
 
+module.exports = app;
 module.exports.handler = serverless(app);
-
