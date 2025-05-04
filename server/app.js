@@ -25,7 +25,7 @@ const User = mongoose.models.User || mongoose.model('User', new mongoose.Schema(
 }));
 
 
-router.get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.send('API is working ✅');
 });
 // GET /user endpoint to fetch the first user
