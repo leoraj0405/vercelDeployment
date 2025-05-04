@@ -33,6 +33,10 @@ const User = mongoose.model('User', new mongoose.Schema({
     email: { type: String, required: true, unique: true }
 }));
 
+
+router.get('/', (req, res) => {
+    res.send('API is working ✅');
+});
 // GET /user endpoint to fetch the first user
 app.get('/user', async (req, res) => {
     try {
