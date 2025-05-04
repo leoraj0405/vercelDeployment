@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors')
 const PORT = 1000;
-const serverless = require('serverless-http');
 require('dotenv').config(); // Load .env variables
 
 
@@ -72,6 +71,3 @@ app.post('/user', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
-
-module.exports = app;
-module.exports.handler = serverless(app);
