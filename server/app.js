@@ -15,19 +15,11 @@ app.use(cors({
 }))
 
 // MongoDB connection setup
-mongoose.connect(process.env.MONGODB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-    .then(() => {
-        console.log('Connected to MongoDB');
-    })
-    .catch(err => {
-        console.error('Failed to connect to MongoDB:', err);
-    });
+mongoose.connect(process.env.MONGODB_URL)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('MongoDB connection error:', err));
 
-// Define a User model
-const User = mongoose.model('User', new mongoose.Schema({
+const User = mongoose.models.User || mongoose.model('User', new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true }
 }));
