@@ -1,14 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const path = require('path')
 const cors = require('cors')
 const PORT = 1000;
+require('dotenv').config(); // Load .env variables
+
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: process.env.CLIENT_URL
 }))
 
 // MongoDB connection setup
