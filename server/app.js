@@ -2,12 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const path = require('path')
-const PORT = 3000;
+const cors = require('cors')
+const PORT = 1000;
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.use(cors({
+    origin: 'http://localhost:3000'
+}))
 
 // MongoDB connection setup
 mongoose.connect('mongodb://localhost:27017/test_db', {
@@ -34,15 +36,12 @@ app.get('/user', async (req, res) => {
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        res.render('list.ejs', {user});
+        res.send(user);
     } catch (err) {
         res.status(500).json({ message: 'Error fetching user' });
     }
 });
 
-app.get('/useradd', (req, res) => {
-    res.render('addUser.ejs')
-})
 
 // POST /user endpoint to create a new user
 app.post('/user', async (req, res) => {
