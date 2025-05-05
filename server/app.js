@@ -10,9 +10,7 @@ require('dotenv').config(); // Load .env variables
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors({
-    origin: process.env.CLIENT_URL
-}))
+app.use(cors())
 
 // MongoDB connection setup
 mongoose.connect(process.env.MONGODB_URL)
@@ -60,8 +58,8 @@ app.post('/user', async (req, res) => {
 });
 
 // Start the server
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Server running on http://localhost:${PORT}`);
+// });
 
 module.exports = app;
