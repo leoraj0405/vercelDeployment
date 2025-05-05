@@ -12,7 +12,7 @@ function AddUser() {
     const handleSubmit = async e => {
         e.preventDefault();
         setError('');
-        console.log(form)
+        console.log('Sending request to:', `${process.env.REACT_APP_FETCH_URL}/user`);
         try {
             const res = await fetch(`${process.env.REACT_APP_FETCH_URL}/user`, {
                 method: 'POST',
