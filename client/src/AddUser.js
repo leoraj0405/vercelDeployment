@@ -12,9 +12,9 @@ function AddUser() {
     const handleSubmit = async e => {
         e.preventDefault();
         setError('');
-
+        console.log(form)
         try {
-            const res = await fetch('http://localhost:1000/user', {
+            const res = await fetch(`${process.env.REACT_APP_FETCH_URL}/user`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(form)
@@ -28,6 +28,7 @@ function AddUser() {
                 setError(data.message || 'Error adding user');
             }
         } catch (err) {
+            console.log(err)
             setError('Server error. Please try again later.');
         }
     };

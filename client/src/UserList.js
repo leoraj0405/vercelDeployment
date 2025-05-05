@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 
 function UserList() {
     const [users, setUsers] = useState([]);
-
     useEffect(() => {
-        fetch('http://localhost:1000/user')
+        fetch(`${process.env.REACT_APP_FETCH_URL}/user`)
             .then(res => res.json())
             .then(data => setUsers(data))
             .catch(err => console.error('Error fetching users:', err));
